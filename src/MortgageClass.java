@@ -25,8 +25,8 @@ public class MortgageClass {
 
         mainResultMethod = getMonthlyPayment(loan, rate, year);
        balance = -(mainResultMethod*(year*12));
-       System.out.format("Balance owed to bank: ");
-        System.out.format("Minimum monthly payment: ");
+       System.out.format("%-30s$%-+10.2f%n","Balance owed to bank: " ,balance);
+        System.out.format("%-30s$%-+10.2f%n","Minimum monthly payment: ",mainResultMethod);
     }
 
     public static double getMonthlyPayment(double loan, double ratemain, int year) {
@@ -34,7 +34,7 @@ public class MortgageClass {
         double base = (rate + ratemain);
         double months = year * 12;
         double result = 0.0;
-        result = ratemain* (rate * (Math.pow(base, months)) / Math.pow(base, months));
+        result = ((rate * loan) / (1 - Math.pow(base, -months)));
         return result;
     }
 
